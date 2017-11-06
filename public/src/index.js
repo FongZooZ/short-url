@@ -17,14 +17,14 @@ import './styles/_index.scss';
 const middlewares = [logger, thunk];
 const store = createStore(reducers, applyMiddleware(...middlewares));
 
-const Root = () => {
+const Root = () => (
 	<Provider store={store}>
 		<Router>
-			<div>
+			<div className="container">
 				<Route exact path="/" component={Home} />
 			</div>
 		</Router>
 	</Provider>
-};
+);
 
 render(Root(), document.getElementById('root'));
