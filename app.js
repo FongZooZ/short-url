@@ -8,14 +8,15 @@ const mongoose = require('mongoose');
 
 const core = require('./core');
 core.bootstrap();
+const params = require('./core/middlewares/params');
 
 mongoose.connect('mongodb://localhost/short-url', { useMongoClient: true });
-mongoose.Promise = global.Promise;
+mongoose.Promise = global.Promise; // wtf mongoose?
 
 const app = express();
 
 // Server listening port
-const port = '3000';
+const PORT = '3000';
 
 // view engine setup
 app.set('views', path.join(__dirname, 'app/views'));
@@ -43,6 +44,9 @@ app.use(cookieParser());
 // Set static path
 app.use('/public', express.static(path.resolve(path.dirname(require.main.filename || process.mainModule.filename), 'public')));
 
+// Params middleware
+params.init(app);
+
 // Route handling
 require('./app/routes')(app);
 
@@ -64,6 +68,6 @@ app.use((err, req, res, next) => {
 	res.render('error');
 });
 
-app.listen(port, () => {
-	console.log(`Express server is listen on ${port}`);
+app.listen(PORT, () => {
+	console.log(`Express server is listen on ${PORT}`);
 });
