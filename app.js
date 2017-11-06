@@ -4,6 +4,13 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const ect = require('ect');
+const mongoose = require('mongoose');
+
+const core = require('./core');
+core.bootstrap();
+
+mongoose.connect('mongodb://localhost/short-url', { useMongoClient: true });
+mongoose.Promise = global.Promise;
 
 const app = express();
 
