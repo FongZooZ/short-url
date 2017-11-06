@@ -16,7 +16,7 @@ app.set('view engine', 'ect');
 app.engine('ect', ect({
 	watch: true,
 	ext: '.ect', // file extension
-	root: path.join(__dirname, 'app/views'), // for include layout
+	root: path.join(__dirname, 'app/views'), // for layout including
 	open: '{%',
 	close: '%}'
 }).render);
