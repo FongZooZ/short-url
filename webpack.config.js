@@ -1,3 +1,5 @@
+const webpack = require('webpack');
+
 module.exports = {
 	entry: ['./public/src/index.js'],
 	output: {
@@ -10,7 +12,7 @@ module.exports = {
 			use: {
 				loader: 'babel-loader',
 				options: {
-					presets: ['env']
+					presets: ['env', 'react']
 				}
 			}
 		}, {
@@ -34,5 +36,13 @@ module.exports = {
 			}]
 		}]
 	},
+	plugins: [
+		new webpack.ProvidePlugin({
+			$: 'jquery',
+			jQuery: 'jquery',
+			'window.jQuery': 'jquery',
+			Popper: ['popper.js', 'default']
+		})
+	],
 	devtool: 'source-map' // enable sourcemaps
 };

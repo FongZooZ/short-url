@@ -34,7 +34,7 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 
 // Set static path
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/public', express.static(path.resolve(path.dirname(require.main.filename || process.mainModule.filename), 'public')));
 
 // Route handling
 require('./app/routes')(app);
