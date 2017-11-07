@@ -10,7 +10,7 @@ exports.save = async (req, res, next) => {
 	let short;
 
 	try {
-		short = await ShortUrl.findOne(cond).exec();
+		short = await ShortUrl.findOne(cond);
 	} catch (err) {
 		return next(err);
 	}

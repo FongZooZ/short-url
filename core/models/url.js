@@ -11,5 +11,6 @@ const ShortUrlSchema = new Schema({
 
 ShortUrlSchema.index({ click: -1 });
 ShortUrlSchema.index({ createdAt: -1 });
+ShortUrlSchema.index({ url: 1 });
 
 module.exports = mongoose.model('ShortUrl', ShortUrlSchema);
